@@ -1,19 +1,22 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import {AppRoute, AuthorizationStatus} from '../../const/const';
-import MainScreen from '../../pages/main-screen/main-screen';
+import MainPage from '../../pages/main-page/main-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginScreen from '../../pages/login-page/login-page';
-import OfferScreen from '../../pages/offer-page/offer-page';
 import NotFoundScreen from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import { Offer } from '../../types/offer';
+import { Review } from '../../types/review';
+import OfferPage from '../../pages/offer-page/offer-page';
 
 
 type AppProps = {
-  placesCount: number;
+  offers: Offer[];
+  reviews: Review[];
 }
 
-function App({ placesCount }: AppProps): JSX.Element {
+export default function App({ offers, reviews }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -21,28 +24,27 @@ function App({ placesCount }: AppProps): JSX.Element {
 
           <Route
             path={AppRoute.Root}
-            element={<MainScreen placesCount={placesCount}/>}
+            element={<MainPage offers={offers}/>}
           />
 
           <Route
             path={AppRoute.Login}
             element={<LoginScreen/>}
           />
-
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage/>
+                <FavoritesPage offers={offers}/>
               </PrivateRoute>
             }
           />
 
           <Route
             path={AppRoute.Offer}
-            element={<OfferScreen/>}
+            element={<OfferPage offers={offers} reviews={reviews}/>}
           />
 
           <Route
@@ -57,4 +59,3 @@ function App({ placesCount }: AppProps): JSX.Element {
 
 }
 
-export default App;
