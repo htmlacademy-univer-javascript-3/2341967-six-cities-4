@@ -4,7 +4,7 @@ import { getStars } from '../../const/utils';
 
 type OfferCardProps = {
   offer: Offer;
-  onCardMouseOver({id}:{id:number}): void;
+  onCardMouseOver(id:number): void;
 };
 
 export default function OfferCard({ offer: offer, onCardMouseOver }: OfferCardProps): JSX.Element {
@@ -13,7 +13,7 @@ export default function OfferCard({ offer: offer, onCardMouseOver }: OfferCardPr
     <article className="cities__card place-card"
       onMouseOver={(evt)=> {
         const target = evt.currentTarget as HTMLElement;
-        onCardMouseOver({id: +target.id});
+        onCardMouseOver(+target.id);
       }}
     >
 

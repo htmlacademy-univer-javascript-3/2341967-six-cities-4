@@ -1,12 +1,12 @@
 export type User = {
-  id: string;
+  id: number;
   name: string;
   avatar: string;
   isPro: boolean;
 };
 
 export type Review = {
-  id: string;
+  id: number;
   date: string;
   user: User;
   comment: string;

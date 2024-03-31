@@ -10,14 +10,14 @@ export type City = {
 };
 
 export type User = {
-  id: string;
+  id: number;
   name: string;
   avatar: string;
   isPro: boolean;
 };
 
 export type Offer = {
-  id: string;
+  id: number;
   title: string;
   description: string;
   type: string;
