@@ -1,11 +1,14 @@
 import OffersList from '../../Components/offer-list/offer-list.tsx';
 import { Offer } from '../../types/offer.ts';
+import Map from '../../Components/map/map.tsx';
+import { useState } from 'react';
 
 type MainProps = {
   offers: Offer[];
 };
 
 export default function MainPage({ offers }: MainProps): JSX.Element {
+  const [activeOfferId, setActiveOfferId] = useState(0);
   return (
     <div className="page page--gray page--main">
       <header></header>
@@ -69,11 +72,11 @@ export default function MainPage({ offers }: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers}/>
+                <OffersList offers={offers} setActiveOfferId={setActiveOfferId}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map offers={offers} activeOfferId={activeOfferId}/>
             </div>
           </div>
         </div>
