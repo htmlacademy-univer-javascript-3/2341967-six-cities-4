@@ -1,28 +1,32 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 import { getStars } from '../../const/utils';
+import { AdClasses } from '../../const/const';
 
 type OfferCardProps = {
   offer: Offer;
+  isMainScreen: boolean;
   onCardMouseOver(id:number): void;
 };
 
-export default function OfferCard({ offer: offer, onCardMouseOver }: OfferCardProps): JSX.Element {
+export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: OfferCardProps): JSX.Element {
   const {id, title, type, price, isPremium, isFavorite, previewImage: image, rating} = offer;
   return (
-    <article className="cities__card place-card"
+    <article className={isMainScreen ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass}
+      id ={offer.id.toString()}
       onMouseOver={(evt)=> {
         const target = evt.currentTarget as HTMLElement;
         onCardMouseOver(+target.id);
       }}
     >
 
-      {isPremium && (
+      {
+        isMainScreen &&
         <div className="place-card__mark">
-          <span>Premium</span>
+          <span>{isPremium ? 'Premium' : ''}</span>
         </div>
-      )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      }
+      <div className={isMainScreen ? AdClasses.ImageWrapperMainAdClass : AdClasses.ImageWrapperPropertyAdClass}>
         <a href="#">
           <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
         </a>
