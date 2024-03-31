@@ -1,6 +1,6 @@
-import { Review } from '../types/review';
+import { ReviewType } from '../types/review';
 
-export const reviews: Review[] = [
+export const reviews: ReviewType[] = [
   {
     id: 1,
     date: '2019-05-08T14:13:56.569Z',
