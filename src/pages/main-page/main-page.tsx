@@ -1,5 +1,5 @@
 import OffersList from '../../Components/offer-list/offer-list.tsx';
-import Header from 'C:/my-repository/src/Components/header/header.tsx';
+import Header from '../../Components/header/header.tsx';
 import CitiesList from '../../Components/cities-list/cities-list.tsx';
 import Map from '../../Components/map/map.tsx';
 import { useState } from 'react';
