@@ -1,22 +1,22 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
+import { ReviewType } from '../../types/review';
+import { useAppSelector } from '../hooks/index';
+
 import MainPage from '../../pages/main-page/main-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
-import LoginScreen from '../../pages/login-page/login-page';
-import NotFoundScreen from '../../pages/not-found-page/not-found-page';
-import PrivateRoute from '../private-route/private-route';
-import { Offer } from '../../types/offer';
-import { ReviewType } from '../../types/review';
+import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import PrivateRoute from '../private-route/private-route';
 
-
-type AppProps = {
-  offers: Offer[];
-  reviews: ReviewType[];
+type AppScreenProps = {
+    reviews: ReviewType[];
 }
 
-export default function App({ offers, reviews }: AppProps): JSX.Element {
+export default function App({ reviews }: AppScreenProps): JSX.Element {
+  const offers = useAppSelector((state)=>state.offers);
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -29,8 +29,9 @@ export default function App({ offers, reviews }: AppProps): JSX.Element {
 
           <Route
             path={AppRoute.Login}
-            element={<LoginScreen/>}
+            element={<LoginPage/>}
           />
+
           <Route
             path={AppRoute.Favorites}
             element={
@@ -49,13 +50,11 @@ export default function App({ offers, reviews }: AppProps): JSX.Element {
 
           <Route
             path="*"
-            element={<NotFoundScreen/>}
+            element={<NotFoundPage/>}
           />
 
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
   );
-
 }
-

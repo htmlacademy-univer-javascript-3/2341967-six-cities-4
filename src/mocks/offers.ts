@@ -147,4 +147,184 @@ export const offers: Offer[] = [
     images: ['../../../markup/img/room.jpg', '../../../markup/img/apartment-01.jpg', '../../../markup/img/apartment-02.jpg',
       '../../../markup/img/apartment-03.jpg', '../../../markup/img/studio-01.jpg'],
   },
+
+  {
+    id: 5,
+    title: 'Beautiful & luxurious studio at great location',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. Where the bustle of the city comes to rest in this alley flowery and colorful.',
+    type: 'apartment',
+    price: 100,
+    bedrooms: 1,
+    maxAdults: 2,
+    amenities: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine'],
+    host: {
+      id: 1,
+      name: 'Angelina',
+      avatar: '../../../markup/img/avatar-angelina.jpg',
+      isPro: true
+    },
+    city: {
+      name: 'Cologne',
+      location: {
+        latitude: 52.35514938496378,
+        longitude: 4.673877537499948,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 2,
+    previewImage: '../../../markup/img/room.jpg',
+    images: ['../../../markup/img/room.jpg', '../../../markup/img/apartment-01.jpg', '../../../markup/img/apartment-02.jpg',
+      '../../../markup/img/apartment-03.jpg', '../../../markup/img/studio-01.jpg'],
+  },
+
+  {
+    id: 6,
+    title: 'Beautiful & luxurious studio at great location',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. Where the bustle of the city comes to rest in this alley flowery and colorful.',
+    type: 'apartment',
+    price: 100,
+    bedrooms: 1,
+    maxAdults: 2,
+    amenities: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine'],
+    host: {
+      id: 1,
+      name: 'Angelina',
+      avatar: '../../../markup/img/avatar-angelina.jpg',
+      isPro: true
+    },
+    city: {
+      name: 'Brussels',
+      location: {
+        latitude: 52.35514938496378,
+        longitude: 4.673877537499948,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 2,
+    previewImage: '../../../markup/img/room.jpg',
+    images: ['../../../markup/img/room.jpg', '../../../markup/img/apartment-01.jpg', '../../../markup/img/apartment-02.jpg',
+      '../../../markup/img/apartment-03.jpg', '../../../markup/img/studio-01.jpg'],
+  },
+
+  {
+    id: 7,
+    title: 'Beautiful & luxurious studio at great location',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. Where the bustle of the city comes to rest in this alley flowery and colorful.',
+    type: 'apartment',
+    price: 100,
+    bedrooms: 1,
+    maxAdults: 2,
+    amenities: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine'],
+    host: {
+      id: 1,
+      name: 'Angelina',
+      avatar: '../../../markup/img/avatar-angelina.jpg',
+      isPro: true
+    },
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 52.35514938496378,
+        longitude: 4.673877537499948,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 2,
+    previewImage: '../../../markup/img/room.jpg',
+    images: ['../../../markup/img/room.jpg', '../../../markup/img/apartment-01.jpg', '../../../markup/img/apartment-02.jpg',
+      '../../../markup/img/apartment-03.jpg', '../../../markup/img/studio-01.jpg'],
+  },
+
+  {
+    id: 8,
+    title: 'Beautiful & luxurious studio at great location',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. Where the bustle of the city comes to rest in this alley flowery and colorful.',
+    type: 'apartment',
+    price: 100,
+    bedrooms: 1,
+    maxAdults: 2,
+    amenities: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine'],
+    host: {
+      id: 1,
+      name: 'Angelina',
+      avatar: '../../../markup/img/avatar-angelina.jpg',
+      isPro: true
+    },
+    city: {
+      name: 'Hamburg',
+      location: {
+        latitude: 52.35514938496378,
+        longitude: 4.673877537499948,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 2,
+    previewImage: '../../../markup/img/room.jpg',
+    images: ['../../../markup/img/room.jpg', '../../../markup/img/apartment-01.jpg', '../../../markup/img/apartment-02.jpg',
+      '../../../markup/img/apartment-03.jpg', '../../../markup/img/studio-01.jpg'],
+  },
+
+  {
+    id: 9,
+    title: 'Beautiful & luxurious studio at great location',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. Where the bustle of the city comes to rest in this alley flowery and colorful.',
+    type: 'apartment',
+    price: 100,
+    bedrooms: 1,
+    maxAdults: 2,
+    amenities: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine'],
+    host: {
+      id: 1,
+      name: 'Angelina',
+      avatar: '../../../markup/img/avatar-angelina.jpg',
+      isPro: true
+    },
+    city: {
+      name: 'Dusseldorf',
+      location: {
+        latitude: 52.35514938496378,
+        longitude: 4.673877537499948,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 2,
+    previewImage: '../../../markup/img/room.jpg',
+    images: ['../../../markup/img/room.jpg', '../../../markup/img/apartment-01.jpg', '../../../markup/img/apartment-02.jpg',
+      '../../../markup/img/apartment-03.jpg', '../../../markup/img/studio-01.jpg'],
+  },
 ];
