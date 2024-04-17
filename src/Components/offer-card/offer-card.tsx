@@ -18,8 +18,11 @@ export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: Offe
         const target = evt.currentTarget as HTMLElement;
         onCardMouseOver(+target.id);
       }}
+      onMouseLeave={(evt)=> {
+        const target = evt.currentTarget as HTMLElement;
+        onCardMouseOver(-target.id);
+      }}
     >
-
       {
         isMainScreen &&
         <div className="place-card__mark">

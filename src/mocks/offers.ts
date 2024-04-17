@@ -225,7 +225,7 @@ export const offers: Offer[] = [
     title: 'Beautiful & luxurious studio at great location',
     description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. Where the bustle of the city comes to rest in this alley flowery and colorful.',
     type: 'apartment',
-    price: 100,
+    price: 101,
     bedrooms: 1,
     maxAdults: 2,
     amenities: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine'],
