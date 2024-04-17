@@ -42,3 +42,10 @@ export enum Actions {
     PICK_CITY = 'PICK_CITY',
     FILTER_OFFERS = 'FILTER_OFFERS',
   }
+
+export enum SortingTypes {
+    Popular = 'Popular',
+    LowToHigh = 'Price: low to high',
+    HighToLow = 'Price: high to low',
+    TopRated = 'Top rated first',
+  }
