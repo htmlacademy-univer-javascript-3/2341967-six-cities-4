@@ -11,7 +11,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
@@ -41,6 +40,8 @@ export enum CitiesName {
 export enum Actions {
     PICK_CITY = 'PICK_CITY',
     FILTER_OFFERS = 'FILTER_OFFERS',
+    LOAD_OFFERS = 'LOAD_OFFERS',
+    SET_STATUS_OFFERS_DATA_LOADING = 'SET_STATUS_OFFERS_DATA_LOADING',
   }
 
 export enum SortingTypes {
@@ -49,3 +50,10 @@ export enum SortingTypes {
     HighToLow = 'Price: high to low',
     TopRated = 'Top rated first',
   }
+
+export enum APIRoute {
+    Offers = '/offers',
+    Questions = 'Questions',
+  }
+
+export const TIMEOUT_SHOW_ERROR = 2000;

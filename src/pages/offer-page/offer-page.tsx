@@ -4,9 +4,9 @@ import { ReviewType} from '../../types/review';
 import ReviewsList from '../../Components/review-list/review-list';
 import ReviewForm from '../../Components/reviewer-form/reviewer-form';
 import { getStars } from '../../const/utils';
-import { useState } from 'react';
 import OffersList from '../../Components/offer-list/offer-list';
 import Map from '../../Components/map/map';
+import Header from '../../Components/header/header';
 
 type OfferScreenProps = {
   offers: Offer[];
@@ -15,13 +15,12 @@ type OfferScreenProps = {
 
 export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.Element {
   const {id} = useParams();
-  const [{isFavorite, isPremium, description, amenities, host,
-    images, rating, maxAdults, price, title, type, bedrooms}] = offers.filter((offer) => offer.id.toString() === id);
-  const [activeOfferId, setActiveOfferId] = useState(0);
+  const offer = offers.filter((ad) => ad.id.toString() === id);
+  const [{isFavorite, isPremium, description, amenities, host, images, rating, maxAdults, price, title, type, bedrooms}] = offer;
+
   return (
     <div className="page">
-      <header></header>
-
+      <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -93,8 +92,8 @@ export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.El
                 <div className="offer__host-user user">
                   <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
                     <img
-                      className={host.avatar}
-                      src="img/avatar-angelina.jpg"
+                      className="offer__avatar user__avatar"
+                      src={host.avatar}
                       width="74"
                       height="74"
                       alt="Host avatar"
@@ -118,7 +117,7 @@ export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.El
               </section>
             </div>
           </div>
-          <Map isMainScreen={false} offers={offers.slice(0,3)} activeOfferId={activeOfferId}/>
+          <Map isMainScreen={false} offers={[...offers.slice(0,3), ...offer]} activeOfferId={id}/>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -126,7 +125,7 @@ export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.El
                             Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <OffersList isMainScreen={false} offers={offers.slice(0,3)} setActiveOfferId={setActiveOfferId}/>
+              <OffersList isMainScreen={false} offers={offers.slice(0,3)}/>
             </div>
           </section>
         </div>
