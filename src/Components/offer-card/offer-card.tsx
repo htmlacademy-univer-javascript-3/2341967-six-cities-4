@@ -6,7 +6,7 @@ import { AdClasses } from '../../const/const';
 type OfferCardProps = {
   offer: Offer;
   isMainScreen: boolean;
-  onCardMouseOver(id:number): void;
+  onCardMouseOver?: (id:string) => void;
 };
 
 export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: OfferCardProps): JSX.Element {
@@ -14,14 +14,13 @@ export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: Offe
   return (
     <article className={isMainScreen ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass}
       id ={offer.id.toString()}
-      onMouseOver={(evt)=> {
+      onMouseOver={onCardMouseOver ? (evt)=> {
         const target = evt.currentTarget as HTMLElement;
-        onCardMouseOver(+target.id);
-      }}
-      onMouseLeave={(evt)=> {
-        const target = evt.currentTarget as HTMLElement;
-        onCardMouseOver(-target.id);
-      }}
+        onCardMouseOver(target.id);
+      } : undefined}
+      onMouseLeave={onCardMouseOver ? ()=> {
+        onCardMouseOver('0');
+      } : undefined}
     >
       {
         isMainScreen &&

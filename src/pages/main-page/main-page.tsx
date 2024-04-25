@@ -9,18 +9,19 @@ import SortingTypeForm from '../../Components/sorting-type/sorting-type';
 import { useSorting } from '../../Components/hooks/use-sorting';
 import { SortingTypes } from '../../const/const';
 
-type MainProps = {
-  offers: Offer[];
+type MainScreenProps = {
+    offers: Offer[];
 };
 
-export default function MainPage({ offers }: MainProps): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState(0);
+export default function MainScreen({ offers }: MainScreenProps): JSX.Element {
+  const [activeOfferId, setActiveOfferId] = useState('0');
   const currentCity = useAppSelector((state)=>state.cityName);
   const [sortingType, setSortingType] = useState<string | null>(SortingTypes.Popular);
   const sortedOffers = useSorting(offers, sortingType);
   return (
     <div className="page page--gray page--main">
       <Header />
+
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -47,3 +48,4 @@ export default function MainPage({ offers }: MainProps): JSX.Element {
     </div>
   );
 }
+

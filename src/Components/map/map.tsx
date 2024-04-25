@@ -1,31 +1,32 @@
-import { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
-import useMap from '../hooks/use-map.tsx';
-import { Offer } from '../../types/offer';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses } from '../../const/const';
+import {useRef, useEffect} from 'react';
+import {Icon, Marker} from 'leaflet';
+import useMap from '../hooks/use-map';
+import {Offer} from '../../types/offer';
+import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses} from '../../const/const';
 import 'leaflet/dist/leaflet.css';
 
-const defaultCustomIcon = new Icon({
+const defaultIconImage = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
-const currentCustomIcon = new Icon({
+const currentIconImage = new Icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
+
 type MapProps = {
    offers: Offer[];
-   activeOfferId: number;
+   activeOfferId?: string;
    isMainScreen: boolean;
 }
 
+
 export default function Map(props: MapProps): JSX.Element {
   const {offers, activeOfferId, isMainScreen} = props;
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 
@@ -36,6 +37,7 @@ export default function Map(props: MapProps): JSX.Element {
           map.removeLayer(layer);
         }
       });
+
       offers.forEach((offer: Offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -44,8 +46,8 @@ export default function Map(props: MapProps): JSX.Element {
 
         marker.setIcon(
           activeOfferId !== undefined && offer.id === activeOfferId
-            ? currentCustomIcon
-            : defaultCustomIcon
+            ? currentIconImage
+            : defaultIconImage
         )
           .addTo(map);
       });

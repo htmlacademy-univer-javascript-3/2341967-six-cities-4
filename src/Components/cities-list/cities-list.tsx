@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CitiesName, SortingTypes } from '../../const/const';
-import { useAppDispatch } from '../hooks/index.ts';
+import { useAppDispatch } from '../hooks/index';
 import { filterOffers, pickCity } from '../../store/action';
 
 type CitiesListProps = {
@@ -8,17 +8,16 @@ type CitiesListProps = {
   currentCity: string | null;
 }
 
-
 export default function CitiesList({setSortingType, currentCity}: CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
     <ul className="locations__list tabs__list" onClick={(evt) => {
       const target = evt.target as HTMLElement;
-      if (target.tagName !== 'SPAN') {
+      if (target.tagName !== 'A' && target.tagName !== 'SPAN') {
         return;
       }
-      dispatch(pickCity(target.textContent));
+      dispatch(pickCity(target.firstChild?.textContent ? target.firstChild.textContent : null));
       dispatch(filterOffers());
       setSortingType(SortingTypes.Popular);
     }}
