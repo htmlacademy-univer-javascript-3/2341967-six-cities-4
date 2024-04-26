@@ -42,6 +42,10 @@ export enum Actions {
     FILTER_OFFERS = 'FILTER_OFFERS',
     LOAD_OFFERS = 'LOAD_OFFERS',
     SET_STATUS_OFFERS_DATA_LOADING = 'SET_STATUS_OFFERS_DATA_LOADING',
+    REQUIRE_AUTHORIZATION = 'REQUIRE_AUTHORIZATION',
+    SET_USER_EMAIL = 'SET_USER_EMAIL',
+    SET_ERROR = 'SET_ERROR',
+    REDIRECT_ROUTE = 'REDIRECT_ROUTE',
   }
 
 export enum SortingTypes {
@@ -53,7 +57,8 @@ export enum SortingTypes {
 
 export enum APIRoute {
     Offers = '/offers',
-    Questions = 'Questions',
+    Login = '/login',
+    Logout = '/logout',
   }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
