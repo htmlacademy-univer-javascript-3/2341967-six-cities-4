@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 import { getStars } from '../../const/utils';
 import { AdClasses } from '../../const/const';
+import { offerInfoInitAction } from '../../store/api-action';
+import { useAppDispatch } from '../hooks';
 
 type OfferCardProps = {
   offer: Offer;
@@ -10,10 +12,11 @@ type OfferCardProps = {
 };
 
 export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: OfferCardProps): JSX.Element {
-  const {id, title, type, price, isPremium, isFavorite, previewImage: image, rating} = offer;
+  const dispatch = useAppDispatch();
+  const {isFavorite, isPremium, previewImage, price, title, type, rating, id} = offer;
   return (
     <article className={isMainScreen ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass}
-      id ={offer.id.toString()}
+      id ={id}
       onMouseOver={onCardMouseOver ? (evt)=> {
         const target = evt.currentTarget as HTMLElement;
         onCardMouseOver(target.id);
@@ -30,7 +33,7 @@ export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: Offe
       }
       <div className={isMainScreen ? AdClasses.ImageWrapperMainAdClass : AdClasses.ImageWrapperPropertyAdClass}>
         <a href="#">
-          <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -56,7 +59,12 @@ export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: Offe
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`} state={offer}>{title}</Link>
+          <Link to={`/offer/${id}`} onClick={() => {
+            dispatch(offerInfoInitAction(id));
+          }}
+          >
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
