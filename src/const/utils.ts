@@ -22,3 +22,10 @@ export function compareOffersPriceDown(offerA: Offer, offerB: Offer) {
 export function compareOffersRatingDown(offerA: Offer, offerB: Offer) {
   return offerB.rating - offerA.rating;
 }
+
+export function validatePassword(password: string): boolean {
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /\d/.test(password);
+
+  return hasLetter && hasNumber;
+}
