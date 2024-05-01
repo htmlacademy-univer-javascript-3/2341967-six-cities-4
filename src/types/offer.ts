@@ -12,9 +12,10 @@ export type City = {
 export type User = {
   id: number;
   name: string;
-  avatar: string;
+  avatarUrl: string;
   isPro: boolean;
 };
+
 
 export type Offer = {
   id: string;
@@ -24,7 +25,7 @@ export type Offer = {
   price: number;
   bedrooms: number;
   maxAdults: number;
-  amenities: string[];
+  goods: string[];
   host: User;
   city: City;
   location: Location;
