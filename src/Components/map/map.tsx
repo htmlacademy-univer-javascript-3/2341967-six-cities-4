@@ -3,6 +3,8 @@ import {Icon, Marker} from 'leaflet';
 import useMap from '../hooks/use-map';
 import {Offer} from '../../types/offer';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses} from '../../const/const';
+import { useAppSelector } from '../hooks';
+import { getCurrentOfferId } from '../../store/page-events/selectors';
 import 'leaflet/dist/leaflet.css';
 
 const defaultIconImage = new Icon({
@@ -20,13 +22,13 @@ const currentIconImage = new Icon({
 
 type MapProps = {
    offers: Offer[];
-   activeOfferId?: string;
    isMainScreen: boolean;
 }
 
 
 export default function Map(props: MapProps): JSX.Element {
-  const {offers, activeOfferId, isMainScreen} = props;
+  const {offers, isMainScreen} = props;
+  const activeOfferId = useAppSelector(getCurrentOfferId);
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 

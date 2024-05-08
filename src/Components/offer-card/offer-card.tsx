@@ -2,27 +2,27 @@ import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 import { getStars } from '../../const/utils';
 import { AdClasses } from '../../const/const';
-import { offerInfoInitAction } from '../../store/api-action';
+import { fetchOfferInfoAction } from '../../store/api-action';
 import { useAppDispatch } from '../hooks';
+import { setCurrentOfferId } from '../../store/page-events/page-events';
 
 type OfferCardProps = {
   offer: Offer;
   isMainScreen: boolean;
-  onCardMouseOver?: (id:string) => void;
 };
 
-export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: OfferCardProps): JSX.Element {
+export default function OfferCard({ offer, isMainScreen }: OfferCardProps): JSX.Element {
   const dispatch = useAppDispatch();
   const {isFavorite, isPremium, previewImage, price, title, type, rating, id} = offer;
   return (
     <article className={isMainScreen ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass}
       id ={id}
-      onMouseOver={onCardMouseOver ? (evt)=> {
+      onMouseOver={ isMainScreen ? (evt)=> {
         const target = evt.currentTarget as HTMLElement;
-        onCardMouseOver(target.id);
+        dispatch(setCurrentOfferId((target.id)));
       } : undefined}
-      onMouseLeave={onCardMouseOver ? ()=> {
-        onCardMouseOver('0');
+      onMouseLeave={isMainScreen ? ()=> {
+        dispatch(setCurrentOfferId(('0')));
       } : undefined}
     >
       {
@@ -60,7 +60,7 @@ export default function OfferCard({ offer, isMainScreen, onCardMouseOver }: Offe
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${id}`} onClick={() => {
-            dispatch(offerInfoInitAction(id));
+            dispatch(fetchOfferInfoAction(id));
           }}
           >
             {title}

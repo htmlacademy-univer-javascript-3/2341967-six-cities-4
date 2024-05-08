@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
-import { CitiesName, SortingTypes } from '../../const/const';
-import { useAppDispatch } from '../hooks/index';
-import { filterOffers, pickCity } from '../../store/action';
+import { SortingTypes } from '../../const/const';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { filterOffers, setCity } from '../../store/offers-data/offers-data';
+import { setSortType } from '../../store/page-events/page-events';
+import { getCityName } from '../../store/offers-data/selectors';
 
-type CitiesListProps = {
-  setSortingType(value: string): void;
-  currentCity: string | null;
-}
-
-export default function CitiesList({setSortingType, currentCity}: CitiesListProps): JSX.Element {
+export default function CitiesList(): JSX.Element {
   const dispatch = useAppDispatch();
+  const currentCity = useAppSelector(getCityName);
 
   return (
     <ul className="locations__list tabs__list" onClick={(evt) => {
@@ -17,38 +15,38 @@ export default function CitiesList({setSortingType, currentCity}: CitiesListProp
       if (target.tagName !== 'A' && target.tagName !== 'SPAN') {
         return;
       }
-      dispatch(pickCity(target.firstChild?.textContent ? target.firstChild.textContent : null));
+      dispatch(setCity(target.firstChild?.textContent ? target.firstChild.textContent : ''));
       dispatch(filterOffers());
-      setSortingType(SortingTypes.Popular);
+      dispatch(setSortType(SortingTypes.Popular));
     }}
     >
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === CitiesName.PARIS ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Paris' ? 'tabs__item--active' : ''}`} to="#">
           <span>Paris</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === CitiesName.COLOGNE ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Cologne' ? 'tabs__item--active' : ''}`} to="#">
           <span>Cologne</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === CitiesName.BRUSSELS ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Brussels' ? 'tabs__item--active' : ''}`} to="#">
           <span>Brussels</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === CitiesName.AMSTERDAM ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Amsterdam' ? 'tabs__item--active' : ''}`} to="#">
           <span>Amsterdam</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === CitiesName.HAMBURG ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Hamburg' ? 'tabs__item--active' : ''}`} to="#">
           <span>Hamburg</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === CitiesName.DUSSELDORF ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Dusseldorf' ? 'tabs__item--active' : ''}`} to="#">
           <span>Dusseldorf</span>
         </Link>
       </li>

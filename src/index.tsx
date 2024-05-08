@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './Components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { getOffersAction, checkAuthAction } from './store/api-action';
+import { fetchOffersAction, checkAuthAction } from './store/api-action';
 import ErrorMessage from './Components/error-message/error-message';
 import { ToastContainer } from 'react-toastify';
 
-store.dispatch(getOffersAction());
+store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
