@@ -10,9 +10,6 @@ import { dropToken, saveToken } from '../services/token';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { saveUserEmail } from '../services/user-email';
-// import { store } from '.';
-// import { setError } from './action';
-// import { TIMEOUT_SHOW_ERROR } from '../const/const';
 
 export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
@@ -94,3 +91,34 @@ export const sendOfferCommentAction = createAsyncThunk<ReviewType[], {
       resetFormData();
       return data;
     });
+
+export const fetchFavoriteOffersAction = createAsyncThunk<Offer[], undefined, {
+      dispatch: AppDispatch;
+      state: State;
+      extra: AxiosInstance;
+    }>(
+      'fetchFavoriteOffers',
+      async (_arg, {extra: api}) => {
+        const {data} = await api.get<Offer[]>(APIRoute.FavoriteOffers);
+
+        return data;
+      },
+    );
+
+export const setOfferFavoriteStatusAction = createAsyncThunk<Offer, {
+      id: string;
+      favoriteStatus: string;
+        },
+      {
+        dispatch: AppDispatch;
+        state: State;
+        extra: AxiosInstance;
+      }>(
+        'setOfferFavoriteStatus',
+        async({id, favoriteStatus}, {dispatch, extra: api}) => {
+          const {data} = await api.post<Offer>(`${APIRoute.FavoriteOffers + id.toString() }/${ favoriteStatus}`);
+          dispatch(fetchFavoriteOffersAction());
+
+          return data;
+        }
+      );

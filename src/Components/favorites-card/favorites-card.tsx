@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 import { getStars } from '../../const/utils';
+import { useAppDispatch } from '../hooks';
+import { setOfferFavoriteStatusAction } from '../../store/api-action';
 
 type FavoritesCardProps = {
     offer: Offer;
 }
 
 export default function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
-  const {id, isFavorite, isPremium, previewImage, price, title, type, rating} = offer;
+  const {isFavorite, isPremium, previewImage, price, title, type, rating, id} = offer;
+  const dispatch = useAppDispatch();
+  const favoriteStatus = `${+!isFavorite}`;
+  const handleFavoriteButtonClick = () => {
+    dispatch(setOfferFavoriteStatusAction({id, favoriteStatus}));
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -25,7 +32,7 @@ export default function FavoritesCard({offer}: FavoritesCardProps): JSX.Element 
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} onClick={handleFavoriteButtonClick} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
