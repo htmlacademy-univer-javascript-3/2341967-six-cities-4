@@ -33,3 +33,9 @@ export type UserReview = {
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
+
+export type FavoriteOffersData = {
+  isFavoriteOffersDataLoading: boolean;
+  favoriteOffers: Offer[];
+}
+

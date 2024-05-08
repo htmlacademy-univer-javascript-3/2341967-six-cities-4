@@ -1,20 +1,22 @@
 import FavoritesCard from '../favorites-card/favorites-card.tsx';
 import { useAppSelector } from '../hooks/index.ts';
-import { getFilteredOffers } from '../../store/offers-data/selectors.ts';
+import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
+import { Link } from 'react-router-dom';
 
 export default function FavoritesList(): JSX.Element {
-  const offers = useAppSelector(getFilteredOffers);
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite === true).map((offer) => offer);
-  const favoriteCities = favoriteOffers.map((offer) => offer.city.name).filter((value, index, self) => self.indexOf(value) === index);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const favoriteCities = new Set<string>();
+  favoriteOffers.forEach((offer) => favoriteCities.add(offer.city.name));
+
   return (
     <>
       { Array.from(favoriteCities.values()).map((city) => (
         <li className="favorites__locations-items" key={city}>
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/">
-                {city}
-              </a>
+              <Link className="locations__item-link" to="#">
+                <span>{city}</span>
+              </Link>
             </div>
           </div>
           <div className="favorites__places">
