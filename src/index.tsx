@@ -4,7 +4,6 @@ import App from './Components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { fetchOffersAction, checkAuthAction } from './store/api-action';
-import ErrorMessage from './Components/error-message/error-message';
 import { ToastContainer } from 'react-toastify';
 
 store.dispatch(fetchOffersAction());
@@ -17,7 +16,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store ={store}>
-      <ErrorMessage />
       <ToastContainer />
       <App/>
     </Provider>
