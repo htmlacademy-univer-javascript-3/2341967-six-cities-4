@@ -1,4 +1,4 @@
-import {createAction} from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit';
 import { Actions, AppRoute, AuthorizationStatus } from '../const/const';
 
 export const redirectToRoute = createAction<AppRoute>(Actions.REDIRECT_ROUTE);
