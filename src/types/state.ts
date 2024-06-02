@@ -1,10 +1,11 @@
 import { store } from '../store/index';
 import { Offer } from './offer';
 import { ReviewType } from './review';
+import { UserData } from './user-data';
 
 export type AuthorizationUserProcess = {
   authorizationStatus: string;
-  userEmail: string;
+  userInfo: UserData | null;
 }
 
 export type OffersData = {

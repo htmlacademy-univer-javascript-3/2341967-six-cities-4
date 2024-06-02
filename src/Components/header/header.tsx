@@ -3,7 +3,7 @@ import { AuthorizationStatus } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { logoutAction, fetchFavoriteOffersAction } from '../../store/api-action';
 import { getUserEmail } from '../../services/user-email';
-import { getAuthorizationStatus } from '../../store/authorization-user-process/selectors';
+import { getAuthorizationStatus, getUserInfo } from '../../store/authorization-user-process/selectors';
 import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
 import React from 'react';
 
@@ -12,6 +12,11 @@ function Header(): JSX.Element {
   const dispatch = useAppDispatch();
   const userEmail = getUserEmail();
   const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const userInfo = useAppSelector(getUserInfo);
+  const userAvatar = userInfo?.avatarUrl
+    ? { backgroundImage: `url(${userInfo?.avatarUrl})` }
+    : {};
+  const style = { ...userAvatar, borderRadius: '50%' };
 
   return (
     <header className="header">
@@ -31,9 +36,9 @@ function Header(): JSX.Element {
                     dispatch(fetchFavoriteOffersAction());
                   }} to="/favorites"
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                    <div className="header__avatar-wrapper user__avatar-wrapper" style={style}>
                     </div>
-                    <span className="header__user-name user__name">{userEmail}</span>
+                    <span className="header__user-name user__name" data-test={userEmail}>{userEmail}</span>
                     <span className="header__favorite-count">{favoriteOffers.length}</span>
                   </Link>
                 </li>

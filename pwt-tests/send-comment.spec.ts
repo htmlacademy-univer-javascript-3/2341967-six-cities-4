@@ -4,12 +4,12 @@ test.describe('Send Comment', () => {
   test('should not let unauthorized user send comment', async ({ page }) => {
     await page.goto('http://localhost:5173'); // load page
 
-    await page.waitForSelector('.cities__card'); // load cards
+    await page.locator('.cities__card').first().waitFor(); // load cards
     const cardElements = await page.locator('.cities__card');
 
     await cardElements.first().click(); // click the first card
 
-    await page.waitForSelector('.offer__gallery'); // wait for offer page to load
+    await page.locator('.offer__gallery').first().waitFor(); // wait for offer page to load
 
     const commentForm = await page.locator('.reviews__form');
     expect(await commentForm.isHidden()).toBeTruthy(); // expect the comment form to be hidden
@@ -26,7 +26,7 @@ test.describe('Send Comment', () => {
     // submit the form
     await page.click('button[type="submit"]');
 
-    await page.waitForSelector('.cities__card'); // load cards
+    await page.locator('.cities__card').first().waitFor(); // load cards
     const cardElement = await page.locator('.cities__card').first();
 
     // get first card's id
@@ -37,7 +37,7 @@ test.describe('Send Comment', () => {
     await cardElement.click(); // click the first card
 
     await page.waitForURL(`http://localhost:5173/offer/${ cardId}`); // wait for offer page to load
-    await page.waitForSelector('.offer__gallery');
+    await page.locator('.offer__gallery').first().waitFor();
 
     const commentForm = await page.locator('.reviews__form');
     expect(await commentForm.isHidden()).not.toBeTruthy(); // expect the comment form to be visible
@@ -55,7 +55,7 @@ test.describe('Send Comment', () => {
     await page.waitForResponse((resp) => resp.url().includes(`/six-cities/comments/${ cardId}`) && resp.status() === 201);
 
     // wait for reviews to reload
-    await page.waitForSelector('.offer__gallery');
+    await page.locator('.offer__gallery').first().waitFor();
     const newReview = await page.locator('.reviews__item').first();
 
     const newReviewText = await newReview?.locator('.reviews__text').first()?.evaluate((el) =>

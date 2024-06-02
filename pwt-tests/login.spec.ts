@@ -4,7 +4,7 @@ test.describe('Login Form', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:5173'); // load page
 
-    await page.waitForSelector('.header__nav-link');
+    await page.locator('.header__nav-link').first().waitFor();
     const loginButton = await page.locator('.header__login');
 
     // go to login page
@@ -39,7 +39,7 @@ test.describe('Login Form', () => {
     // submit
     await page.click('button[type="submit"]');
 
-    await page.waitForSelector('.Toastify__toast-body'); // wait for message
+    await page.locator('.Toastify__toast-body').first().waitFor(); // wait for message
 
     const url = page.url();
     expect(url).toBe('http://localhost:5173/login'); // page url should not change

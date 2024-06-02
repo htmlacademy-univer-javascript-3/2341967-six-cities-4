@@ -4,7 +4,7 @@ test.describe('Go to Offer', () => {
   test('should redirect to offer page when card is clicked', async ({ page }) => {
     await page.goto('http://localhost:5173'); // load page
 
-    await page.waitForSelector('.cities__card'); // load cards
+    await page.locator('.cities__card').first().waitFor(); // load cards
     const cardElement = await page.locator('.cities__card').first();
 
     // get first card's id

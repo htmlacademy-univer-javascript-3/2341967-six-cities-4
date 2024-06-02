@@ -7,7 +7,7 @@ test.describe('Loading Cards from server', () => {
     // wait for server response
     await page.waitForResponse((resp) => resp.url().includes('/six-cities/offers') && resp.status() === 200);
 
-    await page.waitForSelector('.cities__card'); // load cards
+    await page.locator('.cities__card').first().waitFor(); // load cards
 
     const cardElements = await page.locator('.cities__card').all();
     expect(cardElements.length).toBeGreaterThan(0); // make sure there's at least one card

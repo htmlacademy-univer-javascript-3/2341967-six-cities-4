@@ -34,7 +34,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   }
 );
 
-export const loginAction = createAsyncThunk<string, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -44,8 +44,9 @@ export const loginAction = createAsyncThunk<string, AuthData, {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(redirectToRoute(AppRoute.Root));
+    dispatch(fetchOffersAction());
     saveUserEmail(data.email);
-    return data.email;
+    return data;
   },
 );
 
@@ -55,9 +56,10 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'logout',
-  async (_arg, {extra: api}) => {
+  async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+    dispatch(fetchOffersAction());
   },
 );
 
@@ -86,8 +88,9 @@ export const sendOfferCommentAction = createAsyncThunk<ReviewType[], {
     extra: AxiosInstance;
   }>(
     'sendOfferComment',
-    async({id, resetFormData, commentData}, {extra: api}) => {
+    async({id, resetFormData, commentData}, {dispatch, extra: api}) => {
       const {data} = await api.post<ReviewType[]>(APIRoute.Comment + id, commentData);
+      dispatch(fetchOfferInfoAction(id));
       resetFormData();
       return data;
     });
