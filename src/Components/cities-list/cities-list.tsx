@@ -21,32 +21,32 @@ export default function CitiesList(): JSX.Element {
     }}
     >
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === 'Paris' ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Paris' ? 'tabs__item--active' : ''}`} city-name="Paris" to="#">
           <span>Paris</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === 'Cologne' ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Cologne' ? 'tabs__item--active' : ''}`} city-name="Cologne" to="#">
           <span>Cologne</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === 'Brussels' ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Brussels' ? 'tabs__item--active' : ''}`} city-name="Brussels" to="#">
           <span>Brussels</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === 'Amsterdam' ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Amsterdam' ? 'tabs__item--active' : ''}`} city-name="Amsterdam" to="#">
           <span>Amsterdam</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === 'Hamburg' ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Hamburg' ? 'tabs__item--active' : ''}`} city-name="Hamburg" to="#">
           <span>Hamburg</span>
         </Link>
       </li>
       <li className="locations__item">
-        <Link className={`locations__item-link tabs__item ${currentCity === 'Dusseldorf' ? 'tabs__item--active' : ''}`} to="#">
+        <Link className={`locations__item-link tabs__item ${currentCity === 'Dusseldorf' ? 'tabs__item--active' : ''}`} city-name="Dusseldorf" to="#">
           <span>Dusseldorf</span>
         </Link>
       </li>

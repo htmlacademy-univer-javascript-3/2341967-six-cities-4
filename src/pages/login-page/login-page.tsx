@@ -6,6 +6,9 @@ import { AuthData } from '../../types/auth-data';
 import { Link } from 'react-router-dom';
 import { validatePassword } from '../../const/utils';
 import { getCityName } from '../../store/offers-data/selectors';
+import { toast } from 'react-toastify';
+
+const ERROR_MESSAGE = 'Password must contain at least one letter and one number';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -26,8 +29,11 @@ function LoginPage(): JSX.Element {
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });
+    } else {
+      toast(ERROR_MESSAGE);
     }
   };
+
   return (
     <div className="page page--gray page--login">
       <Header />
