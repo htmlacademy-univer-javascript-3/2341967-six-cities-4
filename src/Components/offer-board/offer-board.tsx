@@ -2,10 +2,10 @@ import { useMemo } from 'react';
 import { useAppSelector } from '../hooks';
 import { Offer } from '../../types/offer';
 import { sortOffers } from '../../const/utils';
-import OffersList from '../offer-list/offer-list';
-import SortingTypeForm from '../sorting-type/sorting-type';
 import { getSortType } from '../../store/page-events/selectors';
 import { getCityName } from '../../store/offers-data/selectors';
+import OffersList from '../offer-list/offer-list';
+import SortingTypeForm from '../sorting-type/sorting-type';
 
 type offersBoardProps = {
     offers: Offer[];

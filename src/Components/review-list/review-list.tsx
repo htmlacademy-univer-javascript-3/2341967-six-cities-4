@@ -1,6 +1,6 @@
-import Review from '../review/review';
 import { useAppSelector } from '../hooks';
 import { getComments } from '../../store/current-offer-data/selectors';
+import Review from '../review/review';
 
 export default function ReviewsList(): JSX.Element {
   const reviews = useAppSelector(getComments);

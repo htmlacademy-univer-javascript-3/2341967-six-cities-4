@@ -1,9 +1,9 @@
-import FavoritesList from '../../Components/favorites-list/favorites-list';
-import Footer from '../../Components/footer/footer';
 import { FavoritesEmpty } from '../../Components/favorites-empty/favorites-empty';
 import { useAppSelector } from '../../Components/hooks';
 import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
 import Header from '../../Components/header/header';
+import FavoritesList from '../../Components/favorites-list/favorites-list';
+import Footer from '../../Components/footer/footer';
 
 
 export default function FavoritesPage (): JSX.Element {

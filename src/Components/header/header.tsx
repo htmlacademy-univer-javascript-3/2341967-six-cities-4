@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AuthorizationStatus } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { logoutAction, fetchFavoriteOffersAction } from '../../store/api-action';
+import { logoutAction, getFavoriteOffersAction } from '../../store/api-action';
 import { getUserEmail } from '../../services/user-email';
 import { getAuthorizationStatus, getUserInfo } from '../../store/authorization-user-process/selectors';
 import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
@@ -33,7 +33,7 @@ function Header(): JSX.Element {
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <Link className="header__nav-link header__nav-link--profile" onClick={() => {
-                    dispatch(fetchFavoriteOffersAction());
+                    dispatch(getFavoriteOffersAction());
                   }} to="/favorites"
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper" style={style}>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { OffersData } from '../../types/state';
-import { fetchOffersAction, setOfferFavoriteStatusAction } from '../api-action';
+import { getOffersAction, setOfferFavoriteStatusAction } from '../api-action';
 import { SlicesName, CitiesName } from '../../const/const';
 
 const initialState: OffersData = {
@@ -23,10 +23,10 @@ export const offersData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchOffersAction.pending, (state) => {
+      .addCase(getOffersAction.pending, (state) => {
         state.isOffersDataLoading = true;
       })
-      .addCase(fetchOffersAction.fulfilled, (state, action) => {
+      .addCase(getOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
         state.isOffersDataLoading = false;
         state.filteredOffers = state.offers.filter((offer)=> offer.city.name === state.cityName);

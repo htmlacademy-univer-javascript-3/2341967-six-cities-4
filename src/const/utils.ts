@@ -1,6 +1,6 @@
 import { Offer } from '../types/offer';
-import dayjs from 'dayjs';
 import { SortingTypes } from './const';
+import dayjs from 'dayjs';
 
 const RELEASE_DATE_FORMAT = 'MMMM YYYY';
 

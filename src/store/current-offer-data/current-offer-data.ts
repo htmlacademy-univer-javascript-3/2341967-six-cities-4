@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CurrentOfferData } from '../../types/state';
-import { fetchOfferInfoAction, sendOfferCommentAction } from '../api-action';
+import { getOfferInfoAction, sendOfferCommentAction } from '../api-action';
 import { SlicesName } from '../../const/const';
 import { Offer } from '../../types/offer';
 import { ReviewType } from '../../types/review';
@@ -18,10 +18,10 @@ export const currentOfferData = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchOfferInfoAction.pending, (state) => {
+      .addCase(getOfferInfoAction.pending, (state) => {
         state.isCurrentOfferDataLoading = true;
       })
-      .addCase(fetchOfferInfoAction.fulfilled, (
+      .addCase(getOfferInfoAction.fulfilled, (
         state,
         action: PayloadAction<{offerData: Offer; nearbyOffersData: Offer[]; commentsData: ReviewType[]}>) => {
         const {offerData, nearbyOffersData, commentsData} = action.payload;
@@ -30,7 +30,7 @@ export const currentOfferData = createSlice({
         state.nearbyOffers = nearbyOffersData;
         state.isCurrentOfferDataLoading = false;
       })
-      .addCase(fetchOfferInfoAction.rejected, (state) => {
+      .addCase(getOfferInfoAction.rejected, (state) => {
         state.isCurrentOfferDataLoading = false;
       })
       .addCase(sendOfferCommentAction.fulfilled, (state, action) => {
