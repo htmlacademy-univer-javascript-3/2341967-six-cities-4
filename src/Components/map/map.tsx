@@ -1,11 +1,11 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
-import useMap from '../hooks/use-map';
 import { Offer } from '../../types/offer';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses } from '../../const/const';
 import { useAppSelector } from '../hooks';
 import { getCurrentOfferId } from '../../store/page-events/selectors';
 import 'leaflet/dist/leaflet.css';
+import useMap from '../hooks/use-map';
 
 const defaultIconImage = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -18,7 +18,6 @@ const currentIconImage = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
-
 
 type MapProps = {
    offers: Offer[];

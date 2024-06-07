@@ -1,23 +1,23 @@
-import ReviewsList from '../../Components/review-list/review-list';
-import ReviewForm from '../../Components/reviewer-form/reviewer-form';
 import { getStars } from '../../const/utils';
-import OffersList from '../../Components/offer-list/offer-list';
-import Map from '../../Components/map/map';
-import Header from '../../Components/header/header';
-import NotFoundPage from '../not-found-page/not-found-page';
 import { useAppSelector, useAppDispatch } from '../../Components/hooks';
-import { getCurrentOfferDataLoadingStatus, getNearbyOffers, getOfferInfo } from '../../store/current-offer-data/selectors';
+import { getCurrentOfferLoadingStatus, getNearbyOffers, getOfferInfo } from '../../store/current-offer-data/selectors';
 import { getAuthorizationStatus } from '../../store/authorization-user-process/selectors';
-import Footer from '../../Components/footer/footer';
-import browserHistory from '../../browser-history';
 import { setOfferFavoriteStatusAction } from '../../store/api-action';
 import { AppRoute } from '../../const/const';
 import { useState } from 'react';
+import Footer from '../../Components/footer/footer';
+import browserHistory from '../../browser-history';
+import Map from '../../Components/map/map';
+import Header from '../../Components/header/header';
+import NotFoundPage from '../not-found-page/not-found-page';
+import OffersList from '../../Components/offer-list/offer-list';
+import ReviewsList from '../../Components/review-list/review-list';
+import ReviewForm from '../../Components/reviewer-form/reviewer-form';
 
 export default function OfferScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const offer = useAppSelector(getOfferInfo);
-  const isCurrenOfferDataLoading = useAppSelector(getCurrentOfferDataLoadingStatus);
+  const isCurrenOfferDataLoading = useAppSelector(getCurrentOfferLoadingStatus);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const nearbyOffers = useAppSelector(getNearbyOffers);
   const [isFavoriteOffer, setFavoriteOffer] = useState<boolean | null>(offer?.isFavorite ? offer.isFavorite : null);

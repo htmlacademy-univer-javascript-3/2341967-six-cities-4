@@ -1,10 +1,10 @@
+import { useAppSelector } from '../../Components/hooks';
+import { getFilteredOffers } from '../../store/offers-data/selectors.ts';
+import { MainEmpty } from '../../Components/main-empty/main-empty';
+import OffersBoard from '../../Components/offer-board/offer-board.tsx';
 import Header from '../../Components/header/header.tsx';
 import CitiesList from '../../Components/cities-list/cities-list.tsx';
 import Map from '../../Components/map/map.tsx';
-import { useAppSelector } from '../../Components/hooks';
-import OffersBoard from '../../Components/offers-board/offers-board';
-import { getFilteredOffers } from '../../store/offers-data/selectors.ts';
-import { MainEmpty } from '../../Components/main-empty/main-empty';
 
 export default function MainScreen(): JSX.Element {
   const offers = useAppSelector(getFilteredOffers);

@@ -11,7 +11,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { saveUserEmail } from '../services/user-email';
 
-export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
+export const getOffersAction = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -44,7 +44,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(redirectToRoute(AppRoute.Root));
-    dispatch(fetchOffersAction());
+    dispatch(getOffersAction());
     saveUserEmail(data.email);
     return data;
   },
@@ -59,11 +59,11 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(fetchOffersAction());
+    dispatch(getOffersAction());
   },
 );
 
-export const fetchOfferInfoAction = createAsyncThunk<{offerData: Offer; nearbyOffersData: Offer[]; commentsData: ReviewType[]}, string, {
+export const getOfferInfoAction = createAsyncThunk<{offerData: Offer; nearbyOffersData: Offer[]; commentsData: ReviewType[]}, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -90,12 +90,12 @@ export const sendOfferCommentAction = createAsyncThunk<ReviewType[], {
     'sendOfferComment',
     async({id, resetFormData, commentData}, {dispatch, extra: api}) => {
       const {data} = await api.post<ReviewType[]>(APIRoute.Comment + id, commentData);
-      dispatch(fetchOfferInfoAction(id));
+      dispatch(getOfferInfoAction(id));
       resetFormData();
       return data;
     });
 
-export const fetchFavoriteOffersAction = createAsyncThunk<Offer[], undefined, {
+export const getFavoriteOffersAction = createAsyncThunk<Offer[], undefined, {
       dispatch: AppDispatch;
       state: State;
       extra: AxiosInstance;
@@ -120,7 +120,7 @@ export const setOfferFavoriteStatusAction = createAsyncThunk<Offer, {
         'setOfferFavoriteStatus',
         async({id, favoriteStatus}, {dispatch, extra: api}) => {
           const {data} = await api.post<Offer>(`${APIRoute.FavoriteOffers + id.toString() }/${ favoriteStatus}`);
-          dispatch(fetchFavoriteOffersAction());
+          dispatch(getFavoriteOffersAction());
 
           return data;
         }

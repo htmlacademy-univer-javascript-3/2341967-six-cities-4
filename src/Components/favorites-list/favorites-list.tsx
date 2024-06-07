@@ -1,7 +1,7 @@
-import FavoritesCard from '../favorites-card/favorites-card.tsx';
 import { useAppSelector } from '../hooks/index.ts';
 import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
 import { Link } from 'react-router-dom';
+import FavoritesCard from '../favorites-card/favorites-card.tsx';
 
 export default function FavoritesList(): JSX.Element {
   const favoriteOffers = useAppSelector(getFavoriteOffers);

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FavoriteOffersData } from '../../types/state';
-import { fetchFavoriteOffersAction } from '../api-action';
+import { getFavoriteOffersAction } from '../api-action';
 import { SlicesName } from '../../const/const';
 
 const initialState: FavoriteOffersData = {
@@ -14,10 +14,10 @@ export const favoriteOffersData = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchFavoriteOffersAction.pending, (state) => {
+      .addCase(getFavoriteOffersAction.pending, (state) => {
         state.isFavoriteOffersDataLoading = true;
       })
-      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
+      .addCase(getFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
         state.isFavoriteOffersDataLoading = false;
       });

@@ -2,9 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute} from '../../const/const';
 import { useAppSelector } from '../hooks/index';
-import { getOffersDataLoadingStatus } from '../../store/offers-data/selectors';
-import { getCurrentOfferDataLoadingStatus } from '../../store/current-offer-data/selectors';
-
+import { getOffersLoadingStatus } from '../../store/offers-data/selectors';
+import { getCurrentOfferLoadingStatus } from '../../store/current-offer-data/selectors';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import MainPage from '../../pages/main-page/main-page';
@@ -16,10 +15,10 @@ import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../../pages/loading-page/loading-page';
 
 export default function App(): JSX.Element {
-  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
-  const isCurrenOfferDataLoading = useAppSelector(getCurrentOfferDataLoadingStatus);
+  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
+  const isCurrenOfferLoading = useAppSelector(getCurrentOfferLoadingStatus);
 
-  if (isOffersDataLoading || isCurrenOfferDataLoading) {
+  if (isOffersLoading || isCurrenOfferLoading) {
     return (
       <LoadingScreen />
     );
